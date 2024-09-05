@@ -1,6 +1,8 @@
 package com.debuggeando_ideas.validator;
 
 
+import com.debuggeando_ideas.real_appplications.Rules;
+import com.debuggeando_ideas.real_appplications.Validator;
 import com.debuggeando_ideas.util.Console;
 import com.debuggeando_ideas.util.Database;
 import com.debuggeando_ideas.util.Videogame;
@@ -9,15 +11,15 @@ import java.util.Objects;
 
 public class ValidatorApp {
     public static void main(String[] args) {
-
+    //solucion con interfas funcional y expresiones lambda
         var videogame1 = Database.videogames.get(0);
         var videogame2 = Database.videogames.get(2);
         var videogame3 = Database.videogames.get(3);
         var videogame4 = Database.videogames.get(4);
 
-        //isValidVideogame(videogame4);
+        //isValidVideogame(videogame1);
 
-       // Validator.applyRules(Rules.rules, videogame1);
+        Validator.applyRules(Rules.rules, videogame1);
         System.out.println("Valid videogame");
     }
 
@@ -36,6 +38,8 @@ public class ValidatorApp {
                 throw new InvalidVideogameException("Total sold must be greater than 10");
             } else if(videogame.getIsDiscount()) {
                 throw new InvalidVideogameException("Videogame dont have discount");
+            } else if (videogame.getName().equals("halo")) {
+                throw new InvalidVideogameException("Videogame have to be halo");
             }
         }
         System.out.println("Valid videogame");
